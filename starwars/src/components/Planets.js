@@ -4,8 +4,11 @@ import { Api } from '../api';
 import Planet from './Planet';
 
 const Planets = () => {
-  const { data, status } = useQuery('planets', Api.fetchPlanets);
-  console.log("data", data, "status", status)
+  // const { data, status } = useQuery('planets', Api.fetchPlanets);
+
+  // data : 이름 custom 가능
+  const { data:planets, status } = useQuery('planets', Api.fetchPlanets);
+  console.log("data", planets, "status", status)
   
   return (
     <div>
@@ -19,7 +22,7 @@ const Planets = () => {
       )}
       {status === 'success' && (
         <div>
-          { data.results.map(planet => <Planet key={planet.name} planet={planet} />)}
+          { planets.results.map(planet => <Planet key={planet.name} planet={planet} />)}
         </div>
       )}
     </div>
